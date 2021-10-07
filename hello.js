@@ -39,7 +39,8 @@ function gameLoop(){
     
     if(!gameOver){
     moveSnake();
-    drawSnake();}
+    drawSnake();
+}
     checkWalls();
 
     
@@ -71,25 +72,21 @@ function drawSnake(){
     bodyParts = bodyParts.slice(-1 * tailLength);
 
     ctx.fillStyle = 'darkgrey';
-    bodyParts.forEach(part => ctx.fillRect(part.x, part.y, tileSize, tileSize))
+    bodyParts.forEach((part ) => ctx.fillRect(part.x, part.y, tileSize, tileSize))
     
     ctx.fillStyle = 'black';
     ctx.fillRect(snakePosX,snakePosY,tileSize-1, tileSize-1);
 
 }
 function moveSnake(){
-    snakePosX += xDir * snakeSpeed;
-    snakePosY += yDir * snakeSpeed;
+    
 
     bodyParts.push({x: snakePosX, y:snakePosY});
 
-    for(let i = tailLength; i < 0 ; i++){
-        if(snakePosX === bodyParts[i].x && snakePosY === bodyParts[i].y){
-            scoreText.innerHTML = "gameOver";
-        }
-    }
+    snakePosX += xDir * snakeSpeed;
+    snakePosY += yDir * snakeSpeed;
 
-
+     
 }
 
 function checkWalls(){
