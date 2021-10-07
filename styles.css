@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(255, 174, 0);
+}
+
+canvas {
+    border: 3px solid black;
+}
+
+div {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#xd {
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    font-size: 24px;
+    border: 2px solid red;
+    width: 200px;
+    margin: 20px auto;
+    padding: 20px
+}
