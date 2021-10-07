@@ -21,7 +21,7 @@ let snakePosY = Math.floor(Math.random() * verTiles) * tileSize;
 let foodPosX = 400;
 let foodPosY = 400;
 
-let isRunning = true;
+let gameOver = false;
 
 let score = 0;
 
@@ -35,9 +35,11 @@ function gameLoop(){
 
     drawBoard();
     food();
-    drawSnake();
     
+    
+    if(!gameOver){
     moveSnake();
+    drawSnake();}
     checkWalls();
 
     
@@ -58,12 +60,7 @@ function drawBoard(){
 
         for (let j = 0; j < verTiles; j++){
             ctx.fillRect(i*tileSize, j*tileSize, tileSize-1, tileSize-1);
-            // if(i == verTiles-1){
-            //     ctx.fillRect(i*tileSize, j*tileSize, tileSize, tileSize-1);
-            // }
-            // if(j == horTiles-1){
-            //     ctx.fillRect(i*tileSize, j*tileSize, tileSize-1, tileSize);
-            // }
+    
         }
     }
 }
@@ -86,15 +83,26 @@ function moveSnake(){
 
     bodyParts.push({x: snakePosX, y:snakePosY});
 
+    for(let i = tailLength; i < 0 ; i++){
+        if(snakePosX === bodyParts[i].x && snakePosY === bodyParts[i].y){
+            scoreText.innerHTML = "gameOver";
+        }
+    }
+
 
 }
 
 function checkWalls(){
 
-    if(snakePosX > canvas.width - 5 ) {snakePosX = 0;}
-    if(snakePosX < 0 ) {snakePosX = canvas.width;}
-    if(snakePosY > canvas.height - 5 ) {snakePosY = 0;}
-    if(snakePosY < 0 ) {snakePosY = canvas.height;}
+    if(snakePosX > canvas.width - 5 ) {scoreText.innerHTML = "gameOver";
+     gameOver = true;}
+    if(snakePosX < 0 ) {scoreText.innerHTML = "gameOver";
+    gameOver = true;}
+    if(snakePosY > canvas.height - 5 ) {scoreText.innerHTML = "gameOver";
+    gameOver = true;}
+    if(snakePosY < 0 ) {scoreText.innerHTML = "gameOver";
+    gameOver = true;}
+    
 
     
 
